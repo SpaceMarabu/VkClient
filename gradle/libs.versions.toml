@@ -53,6 +53,7 @@ vk-api = { group = "com.vk", name = "android-sdk-api", version.ref = "vk" }
 okhttp-log = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 jet-nav = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

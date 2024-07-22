@@ -1,13 +1,12 @@
 package com.example.vkclient.presentation.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -19,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.vkclient.navigation.AppNavGraph
@@ -28,11 +28,17 @@ import com.example.vkclient.presentation.news.NewsFeedScreen
 
 @Composable
 fun MainScreen() {
+
     val navigationState = rememberNavigationState()
 
     Scaffold(
+        modifier = Modifier
+            .padding(top = 8.dp),
         bottomBar = {
-            NavigationBar {
+            NavigationBar(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.secondary)
+            ) {
                 val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
 
                 val items = listOf(
@@ -60,8 +66,11 @@ fun MainScreen() {
                             Text(text = stringResource(id = item.titleResId))
                         },
                         colors = NavigationBarItemDefaults.colors(
+                            indicatorColor = Color.Transparent,
                             selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                            unselectedIconColor = MaterialTheme.colorScheme.onSecondary
+                            unselectedIconColor = MaterialTheme.colorScheme.onSecondary,
+                            selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                            unselectedTextColor = MaterialTheme.colorScheme.onSecondary
                         )
                     )
                 }
@@ -83,6 +92,7 @@ fun MainScreen() {
                     onBackPressed = {
                         navigationState.navHostController.popBackStack()
                     },
+                    paddingValues =  paddingValues,
                     feedPost = feedPost
                 )
             },

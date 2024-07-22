@@ -1,6 +1,7 @@
 package com.example.vkclient.presentation.news
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
@@ -74,8 +76,6 @@ private fun NewsFeedScreenContent(
                 CircularProgressIndicator(color = DarkBlue)
             }
         }
-
-        else -> {}
     }
 }
 
@@ -85,19 +85,20 @@ private fun FeedPosts(
     viewModel: NewsFeedViewModel,
     paddingValues: PaddingValues,
     posts: List<FeedPost>,
-    onCommentClickListener: (FeedPost) -> Unit,
-    nextDataIsLoading: Boolean
+    nextDataIsLoading: Boolean,
+    onCommentClickListener: (FeedPost) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.padding(paddingValues), contentPadding = PaddingValues(
-            top = 16.dp, start = 8.dp, end = 8.dp, bottom = 16.dp
-        ), verticalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = Modifier
+            .padding(horizontal = 8.dp),
+        contentPadding = paddingValues,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val scope = CoroutineScope(Dispatchers.Default)
 
         items(items = posts, key = { it.id }) { feedPost ->
             val dismissState = rememberSwipeToDismissBoxState()
-            LaunchedEffect(key1 = Unit) {
+            LaunchedEffect(key1 = dismissState.dismissDirection) {
                 scope.launch {
                     if (dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) {
                             viewModel.remove(feedPost)
@@ -108,6 +109,7 @@ private fun FeedPosts(
                 modifier = Modifier.animateItemPlacement(),
                 state = dismissState,
                 enableDismissFromEndToStart = true,
+                enableDismissFromStartToEnd = false,
                 backgroundContent = {}
             ) {
                 PostCard(

@@ -21,10 +21,11 @@ private val DarkColorScheme = darkColorScheme(
 
 @SuppressLint("ConflictingOnColor")
 private val LightColorScheme = lightColorScheme(
-    primary = Color.White,
-    secondary = Color.White,
+    primary = Color.Gray,
+    secondary = Color.Gray.copy(alpha = 0.05f),
     onPrimary = Black900,
-    onSecondary = Black500
+    onSecondary = Black500,
+    onSurface = Color.White
 )
 
 @Composable
@@ -34,18 +35,9 @@ fun VkClientTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = LightColorScheme,
         typography = Typography,
         content = content
     )

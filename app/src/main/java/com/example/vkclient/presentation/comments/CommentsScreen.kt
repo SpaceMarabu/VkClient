@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -19,7 +19,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,12 +28,11 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.vkclient.R
 import com.example.vkclient.domain.entity.FeedPost
 import com.example.vkclient.domain.entity.PostComment
-import com.example.vkclient.presentation.NewsFeedApplication
-import com.example.vkclient.presentation.ViewModelFactory
 import com.example.vkclient.presentation.getApplicationComponent
 
 @Composable
 fun CommentsScreen(
+    paddingValues: PaddingValues,
     onBackPressed: () -> Unit,
     feedPost: FeedPost,
 ) {
@@ -47,15 +45,18 @@ fun CommentsScreen(
 
     CommentsScreenContent(
         screenState = screenState,
+        paddingValues= paddingValues,
         onBackPressed = onBackPressed
     )
 
 }
 
+//<editor-fold desc="CommentsScreenContent">
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CommentsScreenContent(
     screenState: State<CommentsScreenState>,
+    paddingValues: PaddingValues,
     onBackPressed: () -> Unit
 ) {
     val currentState = screenState.value
@@ -64,27 +65,25 @@ private fun CommentsScreenContent(
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(text = stringResource(R.string.comments_title))
+                        Text(
+                            text = stringResource(R.string.comments_title),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
                     },
                     navigationIcon = {
                         IconButton(onClick = { onBackPressed() }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                tint = MaterialTheme.colorScheme.onPrimary,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = null
                             )
                         }
                     }
                 )
             }
-        ) { paddingValues ->
+        ) { _ ->
             LazyColumn(
-                modifier = Modifier.padding(paddingValues),
-                contentPadding = PaddingValues(
-                    top = 16.dp,
-                    start = 8.dp,
-                    end = 8.dp,
-                    bottom = 72.dp
-                ),
+                contentPadding = paddingValues,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(
@@ -97,7 +96,9 @@ private fun CommentsScreenContent(
         }
     }
 }
+//</editor-fold>
 
+//<editor-fold desc="CommentItem">
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun CommentItem(
@@ -140,6 +141,7 @@ private fun CommentItem(
         }
     }
 }
+//</editor-fold>
 
 
 

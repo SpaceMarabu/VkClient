@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vkclient.domain.entity.AuthState
 import com.example.vkclient.presentation.main.LoginScreen
@@ -18,6 +20,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.statusBarColor = Color.LightGray.copy(alpha = 0.1f).toArgb()
+
         setContent {
             val component = getApplicationComponent()
             val viewModel: MainViewModel = viewModel(factory = component.getViewModelFactory())
@@ -42,9 +47,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    else -> {
-
-                    }
+                    else -> {}
                 }
             }
         }

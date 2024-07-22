@@ -1,5 +1,6 @@
 package com.example.vkclient.presentation.news
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -37,7 +38,9 @@ fun PostCard(
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.secondary)
+                .padding(8.dp)
         ) {
             PostHeader(feedPost)
             Spacer(modifier = Modifier.height(8.dp))
@@ -62,6 +65,7 @@ fun PostCard(
     }
 }
 
+//<editor-fold desc="PostHeader">
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun PostHeader(
@@ -99,7 +103,9 @@ private fun PostHeader(
         )
     }
 }
+//</editor-fold>
 
+//<editor-fold desc="Statistics">
 @Composable
 private fun Statistics(
     statistics: List<StatisticItem>,
@@ -146,7 +152,9 @@ private fun Statistics(
         }
     }
 }
+//</editor-fold>
 
+//<editor-fold desc="formatStatisticCount">
 private fun formatStatisticCount(count: Int): String {
     return if (count > 100_000) {
         String.format("%sK", (count / 1000))
@@ -156,11 +164,15 @@ private fun formatStatisticCount(count: Int): String {
         count.toString()
     }
 }
+//</editor-fold>
 
+//<editor-fold desc="List<StatisticItem>.getItemByType">
 private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticItem {
     return this.find { it.type == type } ?: throw IllegalStateException()
 }
+//</editor-fold>
 
+//<editor-fold desc="IconWithText">
 @Composable
 private fun IconWithText(
     iconResId: Int,
@@ -192,3 +204,4 @@ private fun IconWithText(
         )
     }
 }
+//</editor-fold>
