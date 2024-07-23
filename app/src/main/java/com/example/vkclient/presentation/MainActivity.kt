@@ -8,20 +8,30 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.arkivanov.decompose.defaultComponentContext
 import com.example.vkclient.domain.entity.AuthState
 import com.example.vkclient.presentation.main.LoginScreen
-import com.example.vkclient.presentation.main.MainScreen
 import com.example.vkclient.presentation.main.MainViewModel
+import com.example.vkclient.presentation.root.RootComponentImpl
+import com.example.vkclient.presentation.root.RootContent
 import com.example.vkclient.ui.theme.VkClientTheme
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var rootComponentFactory: RootComponentImpl.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.statusBarColor = Color.LightGray.copy(alpha = 0.1f).toArgb()
+        window.statusBarColor = Color.Gray.copy(alpha = 0.5f).toArgb()
+
+        (applicationContext as VkClientApplication).applicationComponent.inject(this)
+
+        val rootComponent = rootComponentFactory.create(defaultComponentContext())
 
         setContent {
             val component = getApplicationComponent()
@@ -34,21 +44,18 @@ class MainActivity : ComponentActivity() {
                 viewModel.performAuthResult()
             }
 
-            VkClientTheme {
-
-                when (authState.value) {
-                    is AuthState.Authorized -> {
-                        MainScreen()
-                    }
-
-                    is AuthState.NotAuthorized -> {
-                        LoginScreen {
-                            launcher.launch(listOf(VKScope.WALL, VKScope.FRIENDS))
-                        }
-                    }
-
-                    else -> {}
+            when (authState.value) {
+                is AuthState.Authorized -> {
+                    RootContent(component = rootComponent)
                 }
+
+                is AuthState.NotAuthorized -> {
+                    LoginScreen {
+                        launcher.launch(listOf(VKScope.WALL, VKScope.FRIENDS))
+                    }
+                }
+
+                else -> {}
             }
         }
     }

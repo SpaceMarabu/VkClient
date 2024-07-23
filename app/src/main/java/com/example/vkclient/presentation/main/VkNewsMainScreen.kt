@@ -2,7 +2,6 @@ package com.example.vkclient.presentation.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -18,13 +17,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.vkclient.navigation.AppNavGraph
 import com.example.vkclient.navigation.rememberNavigationState
-import com.example.vkclient.presentation.comments.CommentsScreen
-import com.example.vkclient.presentation.news.NewsFeedScreen
 
 @Composable
 fun MainScreen() {
@@ -32,8 +28,6 @@ fun MainScreen() {
     val navigationState = rememberNavigationState()
 
     Scaffold(
-        modifier = Modifier
-            .padding(top = 8.dp),
         bottomBar = {
             NavigationBar(
                 modifier = Modifier
@@ -80,21 +74,9 @@ fun MainScreen() {
         AppNavGraph(
             navHostController = navigationState.navHostController,
             newsFeedScreenContent = {
-                NewsFeedScreen(
-                    paddingValues = paddingValues,
-                    onCommentClickListener = {
-                        navigationState.navigateToComments(it)
-                    }
-                )
             },
             commentsScreenContent = { feedPost ->
-                CommentsScreen(
-                    onBackPressed = {
-                        navigationState.navHostController.popBackStack()
-                    },
-                    paddingValues =  paddingValues,
-                    feedPost = feedPost
-                )
+
             },
             favouriteScreenContent = { TextCounter(name = "Favourite") },
             profileScreenContent = { TextCounter(name = "Profile") }

@@ -11,6 +11,13 @@ class VkClientApplication : Application() {
     val component: ApplicationComponent by lazy {
         DaggerApplicationComponent.factory().create(this)
     }
+
+    lateinit var applicationComponent: ApplicationComponent
+
+    override fun onCreate() {
+        super.onCreate()
+        applicationComponent = DaggerApplicationComponent.factory().create(this)
+    }
 }
 
 @Composable
