@@ -1,8 +1,9 @@
-package com.example.vkclient.presentation.news
+package com.example.vkclient.presentation.home.newsFlow.news
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -39,7 +40,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewsFeedContent(component: NewsFeedComponent) {
+fun NewsFeedContent(
+    component: NewsFeedComponent,
+    paddingValues: PaddingValues
+) {
 
     val state by component.model.collectAsState()
 
@@ -51,7 +55,8 @@ fun NewsFeedContent(component: NewsFeedComponent) {
                 onCommentClickListener = { component.onCommentsClicked(it) },
                 onPostDismissed = { component.deletePost(it) },
                 onLikeClicked = { component.onLikeClicked(it) },
-                onContentHasScrolled = { component.onVisibleContentHasScrolled() }
+                onContentHasScrolled = { component.onVisibleContentHasScrolled() },
+                paddingValues = paddingValues
             )
         }
 
@@ -78,7 +83,7 @@ private fun Loading() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 private fun Content(
-//    paddingValues: PaddingValues,
+    paddingValues: PaddingValues,
     posts: List<FeedPost>,
     nextDataIsLoading: Boolean,
     onCommentClickListener: (FeedPost) -> Unit,
@@ -89,7 +94,7 @@ private fun Content(
     LazyColumn(
         modifier = Modifier
             .padding(horizontal = 8.dp),
-//        contentPadding = paddingValues,
+        contentPadding = paddingValues,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val scope = CoroutineScope(Dispatchers.Main.immediate)

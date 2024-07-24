@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.news
+package com.example.vkclient.presentation.home.newsFlow.news
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.news
+package com.example.vkclient.presentation.home.newsFlow.news
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
@@ -10,9 +10,9 @@ import com.example.vkclient.domain.usecases.ChangeLikeStatusUseCase
 import com.example.vkclient.domain.usecases.DeletePostUseCase
 import com.example.vkclient.domain.usecases.GetRecommendationsUseCase
 import com.example.vkclient.domain.usecases.LoadNextDataUseCase
-import com.example.vkclient.presentation.news.NewsFeedStore.Intent
-import com.example.vkclient.presentation.news.NewsFeedStore.Label
-import com.example.vkclient.presentation.news.NewsFeedStore.State
+import com.example.vkclient.presentation.home.newsFlow.news.NewsFeedStore.Intent
+import com.example.vkclient.presentation.home.newsFlow.news.NewsFeedStore.Label
+import com.example.vkclient.presentation.home.newsFlow.news.NewsFeedStore.State
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.comments
+package com.example.vkclient.presentation.home.newsFlow.comments
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
@@ -9,9 +9,9 @@ import com.example.vkclient.domain.entity.FeedPost
 import com.example.vkclient.domain.entity.PostComment
 import com.example.vkclient.domain.repository.NewsFeedRepository
 import com.example.vkclient.domain.usecases.GetCommentsUseCase
-import com.example.vkclient.presentation.comments.CommentsStore.Intent
-import com.example.vkclient.presentation.comments.CommentsStore.Label
-import com.example.vkclient.presentation.comments.CommentsStore.State
+import com.example.vkclient.presentation.home.newsFlow.comments.CommentsStore.Intent
+import com.example.vkclient.presentation.home.newsFlow.comments.CommentsStore.Label
+import com.example.vkclient.presentation.home.newsFlow.comments.CommentsStore.State
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -57,7 +57,7 @@ class CommentsStoreFactory @Inject constructor(
             name = "CommentsStore",
             initialState = State(State.CommentsState.Initial),
             bootstrapper = BootstrapperImpl(feedPost),
-            executorFactory = ::ExecutorImpl,
+            executorFactory = CommentsStoreFactory::ExecutorImpl,
             reducer = ReducerImpl
         ) {}
 

@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.main
+package com.example.vkclient.presentation.home.bottomNavigationSupport
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
@@ -14,19 +14,19 @@ sealed class NavigationItem(
     val icon: ImageVector
 ) {
 
-    object Home : NavigationItem(
+    data object Home : NavigationItem(
         screen = Screen.Home,
         titleResId = R.string.navigation_item_main,
         icon = Icons.Outlined.Home
     )
 
-    object Favourite : NavigationItem(
+    data object Favourite : NavigationItem(
         screen = Screen.Favourite,
         titleResId = R.string.navigation_item_favourite,
         icon = Icons.Outlined.Favorite
     )
 
-    object Profile : NavigationItem(
+    data object Profile : NavigationItem(
         screen = Screen.Profile,
         titleResId = R.string.navigation_item_profile,
         icon = Icons.Outlined.Person

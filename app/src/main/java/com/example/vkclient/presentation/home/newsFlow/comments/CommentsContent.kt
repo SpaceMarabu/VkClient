@@ -1,8 +1,9 @@
-package com.example.vkclient.presentation.comments
+package com.example.vkclient.presentation.home.newsFlow.comments
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -40,11 +42,15 @@ import com.example.vkclient.ui.theme.DarkBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CommentsContent(component: CommentsComponent) {
+fun CommentsContent(
+    component: CommentsComponent,
+    paddingValues: PaddingValues
+) {
 
     val state by component.model.collectAsState()
 
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             TopAppBar(
                 title = {
@@ -64,11 +70,14 @@ fun CommentsContent(component: CommentsComponent) {
                 }
             )
         }
-    ) {  _ ->
+    ) {  padding ->
 
         when (val commentsState = state.commentsState) {
             is CommentsStore.State.CommentsState.Content -> {
-                Content(comments = commentsState.comments)
+                Content(
+                    comments = commentsState.comments,
+                    paddingValues = padding
+                )
             }
 
             CommentsStore.State.CommentsState.Loading -> {
@@ -81,10 +90,14 @@ fun CommentsContent(component: CommentsComponent) {
 
 }
 
+//<editor-fold desc="Content">
 @Composable
-private fun Content(comments: List<PostComment>) {
+private fun Content(
+    comments: List<PostComment>,
+    paddingValues: PaddingValues
+) {
     LazyColumn(
-//            contentPadding = paddingValues,
+            contentPadding = paddingValues,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(
@@ -95,6 +108,7 @@ private fun Content(comments: List<PostComment>) {
             }
         }
 }
+//</editor-fold>
 
 //<editor-fold desc="Loading">
 @Composable

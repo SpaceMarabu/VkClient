@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.news
+package com.example.vkclient.presentation.home.newsFlow.news
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
@@ -53,8 +53,7 @@ class NewsFeedComponentImpl @AssistedInject constructor(
 
         fun create(
             @Assisted componentContext: ComponentContext,
-            @Assisted("onCommentClicked") onCommentClicked: (FeedPost) -> Unit,
-//            @Assisted("onLikeClicked") onLikeClicked: (FeedPost) -> Unit
+            @Assisted("onCommentClicked") onCommentClicked: (FeedPost) -> Unit
         ): NewsFeedComponentImpl
     }
 }

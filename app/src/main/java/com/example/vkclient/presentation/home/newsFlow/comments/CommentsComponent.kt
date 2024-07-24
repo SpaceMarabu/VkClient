@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.comments
+package com.example.vkclient.presentation.home.newsFlow.comments
 
 import kotlinx.coroutines.flow.StateFlow
 

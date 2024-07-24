@@ -14,19 +14,19 @@ fun AppNavGraph(
     profileScreenContent: @Composable () -> Unit,
     commentsScreenContent: @Composable (FeedPost) -> Unit
 ) {
-    NavHost(
-        navController = navHostController,
-        startDestination = Screen.Home.route
-    ) {
-        homeScreenNavGraph(
-            newsFeedScreenContent = newsFeedScreenContent,
-            commentsScreenContent = commentsScreenContent
-        )
-        composable(Screen.Favourite.route) {
-            favouriteScreenContent()
-        }
-        composable(Screen.Profile.route) {
-            profileScreenContent()
-        }
-    }
+//    NavHost(
+//        navController = navHostController,
+//        startDestination = Screen.Home.route
+//    ) {
+//        homeScreenNavGraph(
+//            newsFeedScreenContent = newsFeedScreenContent,
+//            commentsScreenContent = commentsScreenContent
+//        )
+//        composable(Screen.Favourite.route) {
+//            favouriteScreenContent()
+//        }
+//        composable(Screen.Profile.route) {
+//            profileScreenContent()
+//        }
+//    }
 }

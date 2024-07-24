@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.news
+package com.example.vkclient.presentation.home.newsFlow.news
 
 import com.example.vkclient.domain.entity.FeedPost
 import kotlinx.coroutines.flow.StateFlow

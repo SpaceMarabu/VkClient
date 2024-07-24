@@ -1,4 +1,4 @@
-package com.example.vkclient.presentation.comments
+package com.example.vkclient.presentation.home.newsFlow.comments
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
