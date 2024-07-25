@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -121,7 +122,7 @@ fun HomeFlowContent(component: HomeFlowComponent) {
 @Composable
 private fun TextCounter(name: String) {
     var count by rememberSaveable {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
 
     Text(
