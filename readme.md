@@ -1,6 +1,7 @@
 ## Vk Client
   
-## MVI+COMPOSE  
+паттерн MVI
+UI COMPOSE  
 Навигация через DECOMPOSE  
 Данные получаем через retrofit и okHttp  
 Изображения через Glide  
