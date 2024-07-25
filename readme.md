@@ -1,6 +1,6 @@
 ## Vk Client
   
-паттерн MVI
+паттерн MVI  
 UI COMPOSE  
 Навигация через DECOMPOSE  
 Данные получаем через retrofit и okHttp  
