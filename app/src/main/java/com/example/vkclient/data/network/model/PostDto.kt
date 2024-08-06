@@ -1,11 +1,11 @@
-package com.example.vkclient.data.model
+package com.example.vkclient.data.network.model
 
 import com.google.gson.annotations.SerializedName
-import com.example.vkclient.data.model.AttachmentDto
-import com.example.vkclient.data.model.CommentsDto
-import com.example.vkclient.data.model.LikesDto
-import com.example.vkclient.data.model.RepostsDto
-import com.example.vkclient.data.model.ViewsDto
+import com.example.vkclient.data.network.model.AttachmentDto
+import com.example.vkclient.data.network.model.CommentsDto
+import com.example.vkclient.data.network.model.LikesDto
+import com.example.vkclient.data.network.model.RepostsDto
+import com.example.vkclient.data.network.model.ViewsDto
 
 data class PostDto(
     @SerializedName("id") val id: Long,

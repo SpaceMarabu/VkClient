@@ -1,6 +1,6 @@
-package com.example.vkclient.data.model
+package com.example.vkclient.data.network.model
 
-import com.example.vkclient.data.model.PostDto
+import com.example.vkclient.data.network.model.PostDto
 import com.google.gson.annotations.SerializedName
 
 data class NewsFeedContentDto(

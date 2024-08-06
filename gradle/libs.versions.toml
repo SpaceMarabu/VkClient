@@ -10,7 +10,6 @@ activityCompose = "1.9.0"
 composeBom = "2024.04.01"
 mvikotlin = "3.2.1"
 decompose = "2.1.2"
-room = "2.6.1"
 ksp = "1.9.0-1.0.13"
 dagger = "2.51"
 glide = "1.0.0-beta01"
@@ -41,8 +40,6 @@ mvikotlin-logging = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-loggi
 mvikotlin-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
 decompose-core = { group = "com.arkivanov.decompose", name = "decompose", version.ref = "decompose" }
 decompose-jetpack = { group = "com.arkivanov.decompose", name = "extensions-compose-jetpack", version.ref = "decompose" }
-room-core = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-room-compile = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 dagger-core = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide" }

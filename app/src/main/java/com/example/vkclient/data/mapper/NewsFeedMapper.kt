@@ -1,7 +1,7 @@
 package com.example.vkclient.data.mapper
 
-import com.example.vkclient.data.model.CommentsResponseDto
-import com.example.vkclient.data.model.NewsFeedResponseDto
+import com.example.vkclient.data.network.model.CommentsResponseDto
+import com.example.vkclient.data.network.model.NewsFeedResponseDto
 import com.example.vkclient.domain.entity.FeedPost
 import com.example.vkclient.domain.entity.PostComment
 import com.example.vkclient.domain.entity.StatisticItem
